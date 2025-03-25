@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DYHD0X88R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0DYHD0X88R');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Block Blast online for free! A captivating puzzle game where you match colorful blocks for high scores. Test your skills now!">
+    <meta name="keywords" content="block blast, puzzle game, online game, free game, matching game, brain game">
+    <link rel="canonical" href="https://brainblast.fun/">
+    <title>Block Blast - Addictive Puzzle Game | BrainBlast.fun</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            background-image: 
+                linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.95) 100%),
+                url('data:image/svg+xml,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="8" fill="%23e9ecef"/><circle cx="20" cy="20" r="4" fill="%23dee2e6"/></svg>');
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.2;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(to right, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* Navigation */
+        .nav-section {
+            background: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            background: #f8f9fa;
+            color: #FF6B6B;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-button.active {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            border-color: #FF6B6B;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-button:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-button:hover:not(.active) {
+            color: white;
+        }
+        
+        /* Game Section */
+        .game-section {
+            display: none;
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            margin: 2rem auto;
+            max-width: 1024px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .game-section:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #FF6B6B;
+            box-shadow: 0 25px 30px -5px rgba(255, 107, 107, 0.2), 0 15px 15px -5px rgba(78, 205, 196, 0.1);
+        }
+        
+        .game-section.active {
+            display: block;
+            border-color: #4ECDC4;
+        }
+        
+        .game-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            overflow: hidden;
+            background: #1a1a1a;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,107,107,0.1), rgba(78,205,196,0.1));
+            z-index: 1;
+        }
+        
+        .game-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            z-index: 2;
+        }
+        
+        /* Description Section */
+        .description-section {
+            padding: 4rem 0;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.8;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(255, 107, 107, 0.2), 0 10px 10px -5px rgba(78, 205, 196, 0.1);
+            border-color: #FF6B6B;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin: 4rem 0;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(255, 107, 107, 0.3), 0 10px 10px -5px rgba(78, 205, 196, 0.2);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.2;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cta-section h2::after {
+            background: white;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #FF6B6B;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            background: #f8f9fa;
+            border-color: #FF6B6B;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #f8f9fa;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.1;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-button {
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 120px;
+            }
+            
+            .cta-section {
+                padding: 3rem 1rem;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 0.5rem auto;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Brain Blast Games</h1>
+            <p class="tagline">Challenge your mind with our collection of brain-teasing puzzle games!</p>
+        </div>
+    </header>
+    
+    <nav class="nav-section">
+        <div class="nav-container">
+            <button class="nav-button active" data-game="mahjong">Mahjong</button>
+            <button class="nav-button" data-game="block-blast">Block Blast</button>
+            <button class="nav-button" data-game="sudoku">Sudoku</button>
+            <button class="nav-button" data-game="math-crossword">Math Crossword</button>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section class="game-section active" id="mahjong">
+            <div class="game-container">
+                <iframe 
+                    src="https://cloud.onlinegames.io/games/2025/unity/mahjong/index-og.html" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write"
+                    title="Mahjong Game"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="game-section" id="block-blast">
+            <div class="game-container">
+                <iframe 
+                    src="https://cloud.onlinegames.io/games/2024/unity3/block-blast/index-og.html" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write"
+                    title="Block Blast Game"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </section>
+        
+        <section class="game-section" id="sudoku">
+            <div class="game-container">
+                <iframe 
+                    src="https://cloud.onlinegames.io/games/2025/html/sudoku/index-og.html" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write"
+                    title="Sudoku Game"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="game-section" id="math-crossword">
+            <div class="game-container">
+                <iframe 
+                    src="https://html5.gamedistribution.com/01dbf43f1d884408a99f2322198ce07b/?gd_sdk_referrer_url=https://www.onlinegames.io/mathematical-crossword/" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write"
+                    title="Mathematical Crossword Game"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </section>
+        
+        <section class="description-section">
+            <div id="mahjong-content">
+                <h2>About Mahjong</h2>
+                <p>Mahjong is a classic tile-matching puzzle game that combines patience, skill, and strategy. Match identical tiles to remove them from the board, but remember: only free tiles (those with at least one side open) can be selected. This rule adds an extra layer of strategic thinking to this timeless game.</p>
+                
+                <h2>How to Play Mahjong</h2>
+                <p>Click or tap on matching pairs of tiles to remove them from the board. Tiles can only be selected if they are free (not covered by other tiles and have at least one side open). Clear all tiles to win! The game features relaxing background music and satisfying tile-click sound effects for an immersive experience.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Strategic Gameplay</h3>
+                        <p>Think ahead and plan your moves carefully. The order in which you remove tiles can make the difference between success and getting stuck!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Beautiful Design</h3>
+                        <p>Enjoy traditional Chinese tile designs with authentic symbols and patterns. The game features both classic and modern visual styles.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Helpful Features</h3>
+                        <p>Use the hint system, shuffle option, and undo feature to help you when you're stuck. Perfect for both beginners and experienced players!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Relaxing Experience</h3>
+                        <p>Immerse yourself in the soothing atmosphere with traditional Chinese music and satisfying sound effects. A perfect way to unwind!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="block-blast-content" style="display: none;">
+                <h2>About Block Blast</h2>
+                <p>Block Blast is an addictive puzzle game that challenges your pattern recognition and strategic thinking. Match similar blocks, create powerful combos, and aim for the highest score possible in this brain-teasing adventure!</p>
+                
+                <h2>How to Play Block Blast</h2>
+                <p>The rules are simple yet mastering them requires skill. Tap or click on groups of two or more identical blocks to remove them from the board. The larger the group, the more points you earn! Special blocks and power-ups will appear as you progress, opening up exciting strategic possibilities.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Strategic Gameplay</h3>
+                        <p>Plan your moves carefully to create chain reactions and maximize your score. Think ahead and develop winning strategies!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Colorful Challenges</h3>
+                        <p>Navigate through increasingly difficult levels with vibrant blocks and exciting challenges that will keep you engaged for hours.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Power-Ups</h3>
+                        <p>Discover and utilize special power-ups that can clear entire rows, explode nearby blocks, or transform the playfield to your advantage.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Brain Training</h3>
+                        <p>Improve your cognitive skills including pattern recognition, spatial awareness, and quick decision making while having fun!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sudoku-content" style="display: none;">
+                <h2>About Sudoku</h2>
+                <p>Sudoku is a classic number puzzle game that challenges your logical thinking and problem-solving abilities. Fill in the grid with numbers 1-9, ensuring each row, column, and 3x3 box contains all digits without repetition.</p>
+                
+                <h2>How to Play Sudoku</h2>
+                <p>Start with the pre-filled numbers and use logic to fill in the remaining cells. Each row, column, and 3x3 box must contain the numbers 1-9 without repeating any number. Use the process of elimination and deduction to solve the puzzle!</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Multiple Difficulty Levels</h3>
+                        <p>Choose from various difficulty levels to match your skill and experience. Perfect for both beginners and experienced players!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Clean Interface</h3>
+                        <p>Enjoy a distraction-free gaming experience with our clean and intuitive interface designed for optimal focus.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Hint System</h3>
+                        <p>Get helpful hints when you're stuck, making the game accessible to players of all skill levels.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Progress Tracking</h3>
+                        <p>Track your solving time and improve your skills with our built-in timer and statistics system.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="math-crossword-content" style="display: none;">
+                <h2>About Mathematical Crossword</h2>
+                <p>Mathematical Crossword is a unique puzzle game that combines the classic crossword format with mathematical operations. Place numbers and arithmetic symbols on the grid to create valid mathematical equations both horizontally and vertically!</p>
+                
+                <h2>How to Play Mathematical Crossword</h2>
+                <p>Fill in the empty boxes on the grid with numbers and arithmetic symbols given below your screen. You can drag and drop numbers and symbols, or click on an empty cell and select from the available options. Remember that calculations are performed from left to right and from top to bottom. The game will automatically check your answers as you complete the puzzle.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Infinite Puzzles</h3>
+                        <p>Enjoy randomly generated puzzles that offer endless challenges. Each puzzle is unique and tests your mathematical skills in different ways!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Difficulty Levels</h3>
+                        <p>Choose from various difficulty settings based on your grade level. Whether you're a beginner or a math expert, there's a challenge for everyone!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Smart Controls</h3>
+                        <p>Intuitive drag-and-drop interface for both desktop and mobile devices. Easy to use controls make the game accessible to all players.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Helpful Features</h3>
+                        <p>Use the hint system, remove incorrect answers, and sort numbers for a better gaming experience. Perfect for learning and practicing math!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <h2>Ready to Challenge Your Mind?</h2>
+            <p>Choose your favorite puzzle game and start playing now!</p>
+            <div class="nav-container">
+                <a href="#mahjong" class="cta-button">Play Mahjong</a>
+                <a href="#block-blast" class="cta-button">Play Block Blast</a>
+                <a href="#sudoku" class="cta-button">Play Sudoku</a>
+                <a href="#math-crossword" class="cta-button">Play Math Crossword</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>Brain Blast Games - Your Ultimate Puzzle Collection</p>
+            <p class="copyright">© 2023 BrainBlast.fun. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Game navigation functionality
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show selected game
+                const gameId = button.dataset.game;
+                document.querySelectorAll('.game-section').forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === gameId) {
+                        section.classList.add('active');
+                    }
+                });
+                
+                // Show selected content
+                document.querySelectorAll('#mahjong-content, #block-blast-content, #sudoku-content, #math-crossword-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(`${gameId}-content`).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html> 

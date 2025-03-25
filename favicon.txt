@@ -1,0 +1,20 @@
+Favicon Placeholder
+
+To complete the website, a favicon.ico file needs to be created and added to the root directory.
+
+A favicon is a small icon (typically 16x16, 32x32, or 64x64 pixels) that represents your website in browser tabs, bookmarks, and other UI elements.
+
+For Block Blast, a simple favicon could be designed with:
+- Colorful block shapes
+- The letters "BB" (for Block Blast)
+- A small puzzle piece icon
+
+You can create a favicon using:
+1. Online favicon generators like favicon.io
+2. Graphic design software like Adobe Illustrator or Photoshop
+3. Free tools like GIMP or Canva
+
+Once created, save it as "favicon.ico" and place it in the root directory of your website.
+
+Note: The website already includes the link to the favicon in the HTML head:
+<link rel="icon" href="favicon.ico" type="image/x-icon"> 
