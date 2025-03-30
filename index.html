@@ -441,6 +441,7 @@
             <button class="nav-button" data-game="block-blast">Block Blast</button>
             <button class="nav-button" data-game="sudoku">Sudoku</button>
             <button class="nav-button" data-game="math-crossword">Math Crossword</button>
+            <button class="nav-button" data-game="wordmeister">Wordmeister</button>
         </div>
     </nav>
     
@@ -499,6 +500,21 @@
                     allowfullscreen
                     allow="autoplay; fullscreen; clipboard-write"
                     title="Mathematical Crossword Game"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="game-section" id="wordmeister">
+            <div class="game-container">
+                <iframe 
+                    src="https://html5.gamedistribution.com/b6439239c9ab43bf925defdb54ed0cbe/?gd_sdk_referrer_url=https://www.onlinegames.io/wordmeister" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen
+                    allow="autoplay; fullscreen; clipboard-write"
+                    title="Wordmeister Game"
                     loading="lazy"
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 ></iframe>
@@ -625,6 +641,36 @@
                     </div>
                 </div>
             </div>
+
+            <div id="wordmeister-content" style="display: none;">
+                <h2>About Wordmeister</h2>
+                <p>Wordmeister is an engaging online word game inspired by Scrabble where you can showcase your vocabulary skills. Create words using letter tiles to earn points, with longer words and strategic placement on bonus squares earning you higher scores.</p>
+                
+                <h2>How to Play Wordmeister</h2>
+                <p>Form words by arranging your letter tiles on the game board, starting from the center and connecting to existing tiles. Create crossword-style patterns both vertically and horizontally to maximize your score. Play against a computer opponent and aim to have the highest score by the end of the game.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Strategic Gameplay</h3>
+                        <p>Utilize bonus squares to multiply your points! Blue squares double letter values, green squares triple letter values, red squares double word values, and orange squares triple word values.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Vocabulary Challenge</h3>
+                        <p>Test and expand your vocabulary with each play. The game includes an internal dictionary to verify valid words, encouraging you to discover new combinations.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Scoring System</h3>
+                        <p>Each letter has a point value, with common letters worth less and rare letters worth more. Plan your moves carefully to maximize points through strategic placement on bonus squares.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Adaptable Strategies</h3>
+                        <p>Swap tiles when necessary to improve your hand, potentially setting up for higher-scoring words in future turns. Balance immediate points with long-term strategy.</p>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section class="cta-section">
@@ -635,6 +681,7 @@
                 <a href="#block-blast" class="cta-button">Play Block Blast</a>
                 <a href="#sudoku" class="cta-button">Play Sudoku</a>
                 <a href="#math-crossword" class="cta-button">Play Math Crossword</a>
+                <a href="#wordmeister" class="cta-button">Play Wordmeister</a>
             </div>
         </section>
     </main>
@@ -664,10 +711,32 @@
                 });
                 
                 // Show selected content
-                document.querySelectorAll('#mahjong-content, #block-blast-content, #sudoku-content, #math-crossword-content').forEach(content => {
+                document.querySelectorAll('#mahjong-content, #block-blast-content, #sudoku-content, #math-crossword-content, #wordmeister-content').forEach(content => {
                     content.style.display = 'none';
                 });
                 document.getElementById(`${gameId}-content`).style.display = 'block';
+            });
+        });
+
+        // Fix CTA buttons functionality
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default anchor behavior
+                
+                // Extract game ID from href attribute
+                const gameId = button.getAttribute('href').substring(1); // Remove the # character
+                
+                // Find the corresponding nav button and simulate a click
+                const navButton = document.querySelector(`.nav-button[data-game="${gameId}"]`);
+                if (navButton) {
+                    navButton.click();
+                }
+                
+                // Scroll to the game section for better UX
+                const gameSection = document.getElementById(gameId);
+                if (gameSection) {
+                    gameSection.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
